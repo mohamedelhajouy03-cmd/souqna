@@ -3,135 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الشخصي</title>
+    <title>سوقنا - Souqna | تسوق بذكاء</title>
+    <!-- استدعاء خط عربي جميل من Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
+        / --- إعدادات التصميم الأساسية (سهلة التعديل) --- /
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
+            --primary-color: #2ecc71; / اللون الأخضر الأساسي /
+            --secondary-color: #27ae60;
+            --accent-color: #e74c3c; / لون التنبيهات أو الخصم /
             --text-color: #333;
-            --bg-color: #f3f4f6;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
          {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: &#039;Segoe UI&#039;, Tahoma, Geneva, Verdana, sans-serif;
+            font-family: &#039;Cairo&#039;, sans-serif;
         }
 
         body {
             background-color: "tok-kw">var(--bg-color);
             color: "tok-kw">var(--text-color);
-            line-height: 1.6;
         }
 
-        / تنسيق الرأس /
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        / --- الهيدر والقائمة --- /
         header {
-            background-color: white;
-            padding: 1rem 5%;
+            background-color: "tok-kw">var(--card-bg);
+            box-shadow: "tok-kw">var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: "tok-kw">var(--primary-color);
         }
 
-        nav ul {
-            list-style: none;
+        .logo span { color: "tok-kw">var(--text-color); }
+
+        .nav-links {
             display: flex;
             gap: 20px;
         }
 
-        nav a {
-            text-decoration: none;
-            color: "tok-kw">var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+        .nav-links a:hover { color: "tok-kw">var(--primary-color); }
 
-        nav a:hover {
-            color: "tok-kw">var(--primary-color);
-        }
-
-        / تنسيق القسم الرئيسي /
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%);
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: "tok-kw">var(--primary-color);
-        }
-
-        .hero p {
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
             font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: "tok-kw">var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        / --- القسم الرئيسي (Hero) --- /
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(&#039;https://source.unsplash.com/random/1600x900/?shopping&#039;);
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 20px; }
 
         .btn {
-            display: inline-block;
             background-color: "tok-kw">var(--primary-color);
             color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 25px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover {
-            background-color: "tok-kw">var(--secondary-color);
+        .btn:hover { background-color: "tok-kw">var(--secondary-color); transform: translateY(-2px); }
+
+        / --- قسم المنتجات --- /
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        / تنسيق قسم الخدمات /
-        .services {
-            padding: 50px 5%;
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: "tok-kw">var(--text-color);
+        }
+
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
-        .card {
-            background: white;
-            padding: 20px;
+        .product-card {
+            background: "tok-kw">var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-align: center;
+            overflow: hidden;
+            box-shadow: "tok-kw">var(--shadow);
+            transition: 0.3s;
+            position: relative;
         }
 
-        .card h3 {
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #ddd; / لون مؤقت في حال عدم تحميل الصورة /
+        }
+
+        .product-info { padding: 15px; }
+        
+        .product-category {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: bold;
             margin-bottom: 10px;
-            color: "tok-kw">var(--primary-color);
         }
 
-        / تنسيق التذييل /
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: "tok-kw">var(--primary-color);
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background-color: "tok-kw">var(--text-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover { background-color: "tok-kw">var(--primary-color); }
+
+        / --- الفوتر --- /
         footer {
-            background-color: #1f2937;
+            background-color: #2c3e50;
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 50px;
         }
 
-        / للتجاوب مع الهواتف /
+        / --- إشعار الإضافة للسلة --- /
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: "tok-kw">var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: "tok-kw">var(--shadow);
+            transform: translateY(100px);
+            transition: transform 0.3s ease-"tok-kw">in-out;
+            z-index: 2000;
+        }
+        .toast.show { transform: translateY(0); }
+
+        / تجاوب للموبايل /
         @media(max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            nav ul {
-                display: none; / يمكن استبدالها بقائمة منسدلة لاحقاً */
-            }
+            .navbar { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -139,44 +234,134 @@
 
     <!-- القائمة العلوية -->
     <header>
-        <div "tok-kw">class="logo">اسم موقعك</div>
-        <nav>
-            <ul>
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#">خدماتي</a></li>
-                <li><a href="#">من أنا</a></li>
-                <li><a href="#">اتصل بي</a></li>
-            </ul>
-        </nav>
+        <div "tok-kw">class="navbar">
+            <div "tok-kw">class="logo">سوق<span>نا</span> <i "tok-kw">class="fas fa-shopping-bag"></i></div>
+            <nav "tok-kw">class="nav-links">
+                <a href="#">الرئيسية</a>
+                <a href="#products">المنتجات</a>
+                <a href="#">من نحن</a>
+                <a href="#">اتصل بنا</a>
+            </nav>
+            <div "tok-kw">class="cart-icon" onclick="alert(&#039;سلة المشتريات تحتوي على &#039; + cartCount + &#039; منتجات&#039;)">
+                <i "tok-kw">class="fas fa-shopping-cart"></i>
+                <span "tok-kw">class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
     </header>
 
-    <!-- القسم الرئيسي -->
+    <!-- الواجهة الرئيسية -->
     <section "tok-kw">class="hero">
-        <h1>مرحباً بكم في موقعي الجديد</h1>
-        <p>أقدم هنا خدمات مميزة وحلول إبداعية تناسب احتياجاتك. ابدأ رحلتك معنا اليوم.</p>
-        <a href="#" "tok-kw">class="btn">ابدأ الآن</a>
+        <h1>أهلاً بك في سوقنا</h1>
+        <p>وجهتك الأولى للتسوق الإلكتروني بأفضل الأسعار وأعلى جودة</p>
+        <button "tok-kw">class="btn" onclick="document.getElementById(&#039;products&#039;).scrollIntoView();">تصفح المنتجات</button>
     </section>
 
-    <!-- قسم الخدمات -->
-    <section "tok-kw">class="services">
-        <div "tok-kw">class="card">
-            <h3>تصميم مواقع</h3>
-            <p>نقدم تصاميم عصرية وجذابة تناسب جميع الأجهزة.</p>
-        </div>
-        <div "tok-kw">class="card">
-            <h3>تطوير برمجيات</h3>
-            <p>حلول برمجية متقدمة لتسهيل أعمالك اليومية.</p>
-        </div>
-        <div "tok-kw">class="card">
-            <h3>استشارات</h3>
-            <p>نقدم لك النصائح والإرشادات لتحقيق أهدافك.</p>
+    <!-- قسم المنتجات -->
+    <section "tok-kw">class="container" id="products">
+        <h2 "tok-kw">class="section-title">أحدث المنتجات</h2>
+        <div "tok-kw">class="products-grid" id="products-container">
+            <!-- سيتم إضافة المنتجات هنا بواسطة JavaScript -->
         </div>
     </section>
 
-    <!-- التذييل -->
+    <!-- الفوتر -->
     <footer>
-        <p>جميع الحقوق محفوظة &copy; 2023</p>
+        <p>جميع الحقوق محفوظة &copy; 2023 سوقنا</p>
     </footer>
 
+    <!-- إشعار منبثق -->
+    <div "tok-kw">class="toast" id="toast">تمت إضافة المنتج للسلة!</div>
+
+    <script>
+        // --- بيانات المنتجات (يمكنك التعديل هنا لإضافة منتجاتك) ---
+        "tok-kw">const products = [
+            {
+                id: 1,
+                name: "ساعة ذكية رياضية",
+                category: "إلكترونيات",
+                price: 150,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 2,
+                name: "سماعات بلوتوث عازلة",
+                category: "صوتيات",
+                price: 85,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 3,
+                name: "حذاء رياضي مريح",
+                category: "أزياء",
+                price: 120,
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 4,
+                name: "كاميرا احترافية",
+                category: "تصوير",
+                price: 450,
+                image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 5,
+                name: "نظارة شمسية أنيقة",
+                category: "إكسسوارات",
+                price: 45,
+                image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 6,
+                name: "حقيبة ظهر للسفر",
+                category: "حقائب",
+                price: 90,
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=60"
+            }
+        ];
+
+        "tok-kw">let cartCount = 0;
+
+        // --- دالة لعرض المنتجات في الصفحة ---
+        "tok-kw">function renderProducts() {
+            "tok-kw">const container = document.getElementById(&#039;products-container&#039;);
+            
+            products.forEach(product => {
+                "tok-kw">const productHTML = 
+                    <div "tok-kw">class="product-card">
+                        ![${product.name}]("tok-kw">not-generated)
+                        <div "tok-kw">class="product-info">
+                            <div "tok-kw">class="product-category">${product.category}</div>
+                            <h3 "tok-kw">class="product-title">${product.name}</h3>
+                            <div "tok-kw">class="product-footer">
+                                <span "tok-kw">class="price">${product.price} ر.س</span>
+                                <button "tok-kw">class="add-btn" onclick="addToCart(&#039;${product.name}&#039;)">
+                                    <i "tok-kw">class="fas fa-cart-plus"></i> أضف للسلة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ;
+                container.innerHTML += productHTML;
+            });
+        }
+
+        // --- دالة إضافة للسلة ---
+        "tok-kw">function addToCart(productName) {
+            cartCount++;
+            document.getElementById(&#039;cart-count&#039;).innerText = cartCount;
+            
+            // إظهار الإشعار
+            "tok-kw">const toast = document.getElementById(&#039;toast&#039;);
+            toast.innerText = تمت إضافة "${productName}" للسلة;
+            toast.classList.add(&#039;show&#039;);
+            
+            setTimeout(() => {
+                toast.classList.remove(&#039;show&#039;);
+            }, 3000);
+        }
+
+        // تشغيل الدالة عند تحميل الصفحة
+        window.onload = renderProducts;
+    </script>
 </body>
 </html>
